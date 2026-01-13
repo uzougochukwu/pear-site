@@ -1,8 +1,10 @@
-import walletAddress from "/env.js";
+//import walletAddress from "/env.js";
 
 const auth = document.getElementById("auth");
 
 auth.addEventListener("click", (e) => {
+
+const walletAddress = document.getElementById('addresstext').value    
 
 if (e.target.id === "getEIP"){ // remove the \ from the fetch url if you wish to use it in reqbin/postman/insomnia
     fetch(`https://hl-v2.\
