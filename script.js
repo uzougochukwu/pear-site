@@ -1,7 +1,7 @@
 //import walletAddress from "/env.js";
 
 const auth = document.getElementById("auth");
-const login = document.getElementById("login");
+//const login = document.getElementById("login");
 
 document.getElementById("wallet-test-outcome").setAttribute("hidden","");
 
@@ -36,29 +36,29 @@ address=${walletAddress}&clientId=APITRADER`, {
 )
 
 // authenticate user
-login.addEventListener("click", (e) => {
+// login.addEventListener("click", (e) => {
 
-    if (e.target.id == "auth-login"){
-fetch('https://hl-v2.pearprotocol.io/auth/login', {
-    method: 'POST',
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        "method": "eip712",
-        "address": walletAddress,
-        "clientId": "APITRADER",
-        "details": {
-            "signature": signText,
-            "timestamp": timestamp
-        }
-    })
-}).then(res => res.json())
-.then(data => {
-    console.log(data);
-})
-}
-})
+//     if (e.target.id == "auth-login"){
+// fetch('https://hl-v2.pearprotocol.io/auth/login', {
+//     method: 'POST',
+//     headers: {
+//         "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify({
+//         "method": "eip712",
+//         "address": walletAddress,
+//         "clientId": "APITRADER",
+//         "details": {
+//             "signature": signText,
+//             "timestamp": timestamp
+//         }
+//     })
+// }).then(res => res.json())
+// .then(data => {
+//     console.log(data);
+// })
+// }
+// })
 
 
 async function connectRabbyWallet() {
