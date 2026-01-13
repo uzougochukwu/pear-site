@@ -7,7 +7,8 @@ document.getElementById("wallet-test-outcome").setAttribute("hidden","");
 
 var walletAddress="";
 var timestamp = 0;
-var signText = "testHello";
+var signHash = "";
+var message = "";
 
 // getEIP712 message api call
 auth.addEventListener("click", (e) => {
@@ -27,6 +28,8 @@ address=${walletAddress}&clientId=APITRADER`, {
     if (data.message.action == "authenticate"){
         document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
         timestamp = data.timestamp;
+        message = data.message;
+        
         connectRabbyWallet();
     }
     console.log(data, timestamp, walletAddress);
@@ -69,7 +72,9 @@ async function connectRabbyWallet() {
         method: "eth_requestAccounts",
       });
       console.log("Connected account:", accounts[0]);
-      console.log(window.ethereum);
+      //console.log(window.ethereum);
+      //signHash = accounts[0].sign("Hello World", walletAddress);
+
       
     } catch (error) {
       console.error("Failed to connect to Rabby wallet:", error);
