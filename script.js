@@ -21,7 +21,7 @@ if (e.target.id === "getEIP"){ // remove the \ from the fetch url if you wish to
 fetch(`https://hl-v2.\
 pearprotocol.io/auth/eip712\
 -message?\
-address=${walletAddress}&clientId=APITRADER`, {
+address=${walletAddress}&clientId=SYSVIEW`, {
     method: 'GET',
     headers: {"Accept": "*/*"},})
     .then(res => res.json())
@@ -32,11 +32,11 @@ address=${walletAddress}&clientId=APITRADER`, {
         timestamp = data.timestamp;
         message = data.message;
         
-        connectRabbyWallet();
-        onSubmitWalletSign();
+        //connectRabbyWallet();
+        onSubmitWalletSign();// comment out connectRabbyWallet, then have onSubmitWalletSign do the POST /auth/login call
     }
     // console.log(data, timestamp, walletAddress);
-    console.log(timestamp);
+   // console.log(timestamp);
     
     })
 }
@@ -57,7 +57,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
     body: JSON.stringify({
         "method": "eip712",
         "address": walletAddress,
-        "clientId": "APITRADER",
+        "clientId": "SYSVIEW",
         "details": {
             "signature": codeWalletSignature.innerHTML,
             "timestamp": timestamp
@@ -65,7 +65,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
     })
 }).then(res => res.json())
 .then(data => {
-    console.log(data);
+   // console.log(data);
 })
 }
 })
@@ -81,7 +81,6 @@ async function connectRabbyWallet() {
       console.log("Connected account:", accounts[0]);
       //console.log(window.ethereum);
       //signHash = accounts[0].sign("Hello World", walletAddress);
-
       
     } catch (error) {
       console.error("Failed to connect to Rabby wallet:", error);
@@ -103,8 +102,6 @@ const onSubmitWalletSign = async (event) => {
     //MESSAGE = message;
    // console.log(typeof(message));
    // console.log(walletAddress);
-    
-    
 
     // Get the element we want to output the result 
     // of prompting the wallet for signature
@@ -113,10 +110,13 @@ const onSubmitWalletSign = async (event) => {
 
     // Prompt wallet for signature
     try {
+        console.log(JSON.stringify(message));
+        
+
         // Perform a personal sign with the original message and the wallet address
         const signature = await window.ethereum.request({
             method: 'personal_sign',
-            params: [JSON.stringify(message), walletAddress]
+            params: [JSON.stringify(message), walletAddress] // check that the message is valid
         });
         //console.log({ signature });
         //console.log(signature);
@@ -127,6 +127,7 @@ const onSubmitWalletSign = async (event) => {
         //SIGNATURE = signature;
         //console.log({ SIGNATURE });
         console.log(codeWalletSignature.innerHTML);
+        
         
     } catch (error) {
         console.log({ error });
