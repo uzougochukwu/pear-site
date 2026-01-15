@@ -13,6 +13,9 @@
 
 //const { log } = require("console");
 
+// in web3.currentprovider.sendAsync make signature = result.result
+// then in post /auth/login make signature: signature
+
 
 const auth = document.getElementById("auth");
 const login = document.getElementById("login");
@@ -25,6 +28,7 @@ var signHash = "";
 var message = "";
 var signText = "";
 var signature = "";
+var chainNum = "";
 
 // getEIP712 message api call
 auth.addEventListener("click", (e) => {
@@ -45,7 +49,7 @@ address=${walletAddress}&clientId=SYSVIEW`, {
         document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
         timestamp = data.timestamp;
         message = data.message;
-        
+        chainNum = data.domain.chainId
         //connectRabbyWallet();
         //onSubmitWalletSign();// comment out connectRabbyWallet, then have onSubmitWalletSign do the POST /auth/login call
         eip712Sign();
@@ -87,24 +91,24 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 })
 
 
-async function connectRabbyWallet() {
-  if (window.ethereum && window.ethereum.isRabby) {
-    try {
-      // Request user authorization
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      console.log("Connected account:", accounts[0]);
-      //console.log(window.ethereum);
-      //signHash = accounts[0].sign("Hello World", walletAddress);
+// async function connectRabbyWallet() {
+//   if (window.ethereum && window.ethereum.isRabby) {
+//     try {
+//       // Request user authorization
+//       const accounts = await window.ethereum.request({
+//         method: "eth_requestAccounts",
+//       });
+//       console.log("Connected account:", accounts[0]);
+//       //console.log(window.ethereum);
+//       //signHash = accounts[0].sign("Hello World", walletAddress);
       
-    } catch (error) {
-      console.error("Failed to connect to Rabby wallet:", error);
-    }
-  } else {
-    console.error("Rabby wallet is not installed");
-  }
-}
+//     } catch (error) {
+//       console.error("Failed to connect to Rabby wallet:", error);
+//     }
+//   } else {
+//     console.error("Rabby wallet is not installed");
+//   }
+// }
 
 const onSubmitWalletSign = async (event) => {
     console.group('onSubmitWalletSign');
@@ -161,29 +165,80 @@ const eip712Sign = async () => {
 
     // message = {"address": "0xb414b76604b3708160df936ef20be497e24dd387", "clientId": "SYSVIEW", "timestamp": 1768492898, "action": "authenticate"}
     // message = "yh"
-     console.log(JSON.stringify(message, null, 2))
+     
     //console.log(walletAddress)
     //Web3.eth.signTypedData(message, walletAddress);
-    
+
+    //var obj = JSON.parse(message)
+
+    const web3 = new Web3(window.ethereum);
+
+    const chainId = chainNum;
+
+    // eip-712 typed data structure
+
+    const data = JSON.stringify({
+        domain: {
+            chainId: chainId,
+            name: 'SYSVIEW',
+            version: '1',
+        },
+        message: {
+            address: walletAddress,
+            clientId: 'SYSVIEW',
+            timestamp: timestamp,
+            action: 'authenticate'
+        },
+        primaryType: 'Authentication',
+        types: {
+            EIP712Domain: [
+                { name: 'name', type: 'string' },
+                { name: 'version', type: 'string' },
+                { name: 'chainId', type: 'uint256' },
+            ],
+            Authentication: [
+                { name: 'address', type: 'address' },
+                { name: 'clientId', type: 'string' },
+                { name: 'timestamp', type: 'uint256' },
+                { name: 'action', type: 'string'},
+            ]
+        }
+    })
+
     web3.currentProvider.sendAsync(
         {
             method: "eth_signTypedData_v4",
-            params: [walletAddress, JSON.stringify(message, null, 2)],
+            params: [walletAddress, data],
             from: walletAddress
         },
         function(err, result) {
-            if (err) {
-                //return console.error(err);
-                console.log(err)
-            }
-            //console.log(result);
-            
-            // const signature = result.result.substring(2);
-            // const r = "0x" + signature.substring(0,64);
-            // const s = "0x" + signature.substring(64, 128);
-            // const v = parseInt(signature.substring(128, 130), 16);
+            if (err) return console.log(err);
+            if (result.error) return console.log(result.error)
+            console.log(result.result)    
         }
     )
+
+    // console.log(JSON.stringify(message, null, 2))
+    
+    // web3.currentProvider.sendAsync(
+    //     {
+    //         method: "eth_signTypedData_v4",
+    //         params: [walletAddress, JSON.stringify(message)],
+    //         from: walletAddress
+    //     },
+    //     function(err, result) {
+    //         if (err) {
+    //             //return console.error(err);
+    //             console.log(err)
+    //         }
+    //         //console.log(result);
+            
+    //         // const signature = result.result.substring(2);
+    //         // const r = "0x" + signature.substring(0,64);
+    //         // const s = "0x" + signature.substring(64, 128);
+    //         // const v = parseInt(signature.substring(128, 130), 16);
+    //     }
+    // )
 }
 
 const wallet712sign = async () => {
