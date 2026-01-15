@@ -79,13 +79,13 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
         "address": walletAddress,
         "clientId": "SYSVIEW",
         "details": {
-            "signature": codeWalletSignature.innerHTML,
+            "signature": signature,
             "timestamp": timestamp
         }
     })
 }).then(res => res.json())
 .then(data => {
-   // console.log(data);
+    console.log(data);
 })
 }
 })
@@ -161,8 +161,6 @@ const onSubmitWalletSign = async (event) => {
 
 const eip712Sign = async () => {
 
-   
-
     // message = {"address": "0xb414b76604b3708160df936ef20be497e24dd387", "clientId": "SYSVIEW", "timestamp": 1768492898, "action": "authenticate"}
     // message = "yh"
      
@@ -212,9 +210,11 @@ const eip712Sign = async () => {
             from: walletAddress
         },
         function(err, result) {
+            //console.log(walletAddress)
             if (err) return console.log(err);
             if (result.error) return console.log(result.error)
-            console.log(result.result)    
+                signature = result.result
+            console.log(signature)    
         }
     )
 
