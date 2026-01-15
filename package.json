@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@rabby-wallet/wc-client": "^1.8.10",
+    "web3": "^4.16.0",
+    "web3-eth": "^4.11.1"
+  }
+}

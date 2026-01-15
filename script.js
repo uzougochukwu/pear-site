@@ -1,4 +1,18 @@
 //import walletAddress from "/env.js";
+//import web3 as ('web3');
+//import { Web3 } from './node_modules/web3/dist/web3.min.js';
+//const Web3 = require(["web3"])
+//import { Web3 } from 'web3';
+//import Web3 from 'web3'
+
+//const { default: Connector } = require("@rabby-wallet/wc-core");
+//const { Sign, sign } = require("crypto");
+//import RabbyWcClient from '@rabby-wallet/wc-client';
+
+
+
+//const { log } = require("console");
+
 
 const auth = document.getElementById("auth");
 const login = document.getElementById("login");
@@ -33,10 +47,12 @@ address=${walletAddress}&clientId=SYSVIEW`, {
         message = data.message;
         
         //connectRabbyWallet();
-        onSubmitWalletSign();// comment out connectRabbyWallet, then have onSubmitWalletSign do the POST /auth/login call
+        //onSubmitWalletSign();// comment out connectRabbyWallet, then have onSubmitWalletSign do the POST /auth/login call
+        eip712Sign();
+        //wallet712sign();
     }
     // console.log(data, timestamp, walletAddress);
-   // console.log(timestamp);
+    //console.log(timestamp);
     
     })
 }
@@ -110,13 +126,15 @@ const onSubmitWalletSign = async (event) => {
 
     // Prompt wallet for signature
     try {
-        console.log(JSON.stringify(message));
+       // console.log(JSON.stringify(message));
         
 
         // Perform a personal sign with the original message and the wallet address
         const signature = await window.ethereum.request({
             method: 'personal_sign',
             params: [JSON.stringify(message), walletAddress] // check that the message is valid
+         //     method: "eth_signTypedData_v4",
+          //    params: [walletAddress, JSON.stringify(message)]
         });
         //console.log({ signature });
         //console.log(signature);
@@ -137,7 +155,45 @@ const onSubmitWalletSign = async (event) => {
     console.groupEnd();
 };
 
+const eip712Sign = async () => {
 
+   
 
+    // message = {"address": "0xb414b76604b3708160df936ef20be497e24dd387", "clientId": "SYSVIEW", "timestamp": 1768492898, "action": "authenticate"}
+    // message = "yh"
+     console.log(JSON.stringify(message, null, 2))
+    //console.log(walletAddress)
+    //Web3.eth.signTypedData(message, walletAddress);
+    
+    web3.currentProvider.sendAsync(
+        {
+            method: "eth_signTypedData_v4",
+            params: [walletAddress, JSON.stringify(message, null, 2)],
+            from: walletAddress
+        },
+        function(err, result) {
+            if (err) {
+                //return console.error(err);
+                console.log(err)
+            }
+            //console.log(result);
+            
+            // const signature = result.result.substring(2);
+            // const r = "0x" + signature.substring(0,64);
+            // const s = "0x" + signature.substring(64, 128);
+            // const v = parseInt(signature.substring(128, 130), 16);
+        }
+    )
+}
 
+const wallet712sign = async () => {
+
+    connector.signTypedData([walletAddress, message])
+    .then(result => {
+        console.log(result)
+    })
+    .catch(error => {
+        console.error(error);
+    })
+}
 
