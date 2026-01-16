@@ -1,4 +1,3 @@
-
 const auth = document.getElementById("auth");
 const login = document.getElementById("login");
 
@@ -125,7 +124,12 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 .then(data => {
 
     accessToken = data.accessToken;
+    showPositions();
 })
 }
 })
 
+// get a list of open positions
+const showPositions = async () => {
+    
+}

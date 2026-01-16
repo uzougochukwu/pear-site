@@ -18,6 +18,18 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
  <div id="login">
     <p></p>
 <button id="auth-login">Login with this wallet</button>
+
+<p></p>
+
+<div id="open-positions">
+ <p id="current-position">Position 2</p>
+
+<script>
+function showPositions(){
+document.getElementById("open-positions").innerHTML+="<p>Another position<p>";
+}
+</script> 
+</div>
 <script type="module" src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </body>
