@@ -173,18 +173,26 @@ const eip712Sign = async () => {
 
     const chainId = chainNum;
 
+    //console.log(message.address);
+
+
+
+//const textEncoder = new TextEncoder();
+//console.log(textEncoder.encode(document.getElementById('addresstext').value).length);
+
     // eip-712 typed data structure
 
     const data = JSON.stringify({
         domain: {
+            name: 'Pear Protocol',
+            version: '1',            
             chainId: chainId,
-            name: 'SYSVIEW',
-            version: '1',
+            verifyingContract: '0x0000000000000000000000000000000000000001'
         },
         message: {
-            address: walletAddress,
+            address: document.getElementById('addresstext').value, // message.address
             clientId: 'SYSVIEW',
-            timestamp: timestamp,
+            timestamp: parseInt(timestamp),
             action: 'authenticate'
         },
         primaryType: 'Authentication',
@@ -193,6 +201,7 @@ const eip712Sign = async () => {
                 { name: 'name', type: 'string' },
                 { name: 'version', type: 'string' },
                 { name: 'chainId', type: 'uint256' },
+                { name: 'verifyingContract', type: 'address' },
             ],
             Authentication: [
                 { name: 'address', type: 'address' },
@@ -251,4 +260,3 @@ const wallet712sign = async () => {
         console.error(error);
     })
 }
-
