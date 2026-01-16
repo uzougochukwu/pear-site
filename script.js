@@ -29,6 +29,7 @@ var message = "";
 var signText = "";
 var signature = "";
 var chainNum = "";
+var accessToken = "";
 
 // getEIP712 message api call
 auth.addEventListener("click", (e) => {
@@ -46,7 +47,7 @@ address=${walletAddress}&clientId=SYSVIEW`, {
     .then(data =>{
 
     if (data.message.action == "authenticate"){
-        document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
+        //document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
         timestamp = data.timestamp;
         message = data.message;
         chainNum = data.domain.chainId
@@ -85,7 +86,9 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
     })
 }).then(res => res.json())
 .then(data => {
-    console.log(data);
+    //console.log(data.accessToken);
+
+    accessToken = data.accessToken;
 })
 }
 })
@@ -222,7 +225,9 @@ const eip712Sign = async () => {
             //console.log(walletAddress)
             if (err) return console.log(err);
             if (result.error) return console.log(result.error)
-                signature = result.result
+            signature = result.result
+            
+            document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
             console.log(signature)    
         }
     )
