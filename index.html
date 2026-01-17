@@ -35,6 +35,8 @@ var i = 0;
 console.log(data.length);
 
 for(i=0; i<data.length; i++){
+    document.getElementById("open-positions").innerHTML+=`${data[i].positionId} `;
+
     document.getElementById("open-positions").innerHTML+=`Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}`;
 
     document.getElementById("open-positions").innerHTML+=` Entry Value: $${data[i].entryPositionValue.toFixed(2)}`;
@@ -44,14 +46,24 @@ for(i=0; i<data.length; i++){
     document.getElementById("open-positions").innerHTML+=` Long: `;
     // get all long assets
     for (var j = 0; j<data[i].longAssets.length; j++){
+
     document.getElementById("open-positions").innerHTML+=` ${data[i].longAssets[j].coin}`;    
     }
+    if (data[i].longAssets.length==0){
+        document.getElementById("open-positions").innerHTML+=` No long assets `;
+    }    
 
     document.getElementById("open-positions").innerHTML+=` Short: `;
     // get all short assets
     for (var j = 0; j<data[i].shortAssets.length; j++){
+
     document.getElementById("open-positions").innerHTML+=` ${data[i].shortAssets[j].coin}`;    
     }
+    if(data[i].shortAssets.length == 0){
+        document.getElementById("open-positions").innerHTML+=` No short assets `;
+    }
+
+    document.getElementById("open-positions").innerHTML+= `<button onClick="closeEntirePos('${data[i].positionId}')">Close entire position</button>`;
 
     document.getElementById("open-positions").innerHTML+="<p><p>"// line break between positions
 }

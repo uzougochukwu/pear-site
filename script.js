@@ -194,6 +194,37 @@ showPositions(data);
 })
 }
 
+// close entire position
+ window.closeEntirePos = function(positionID){
+    console.log("entered closeEntirePos func")
+ fetch(`https://hl-v2.pearprotocol.io\
+/positions/\
+${positionID}\
+/close`), {
+    method: 'POST'
+,
+headers: {
+"Authorization": `Bearer ${accessToken}`,
+"Content-Type": "application/json"
+},
+body:JSON.stringify({
+    "executionType": "MARKET"
+})
+.then((res => res.json()))
+.then(data => {
+    console.log(data)
+    
+    // need to clear out previous positions before updating them
+    
+    // update positions
+    getPositions();
+})
+.catch(error => {
+    console.log(error)
+})
+}
+ }
+
 // clear error messages below confirm button, if user successfully confirms wallet address
 const clearUpErrorMessagesBeneathConfirmButton = async () => {
     document.getElementById("invalid-address").setAttribute("hidden", "");
