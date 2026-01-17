@@ -13,6 +13,11 @@ document.getElementById("same-timestamp").setAttribute("hidden", "");
 
 document.getElementById("sign-in-error").setAttribute("hidden", "");
 
+// setting up positions variable so we can clear out the positions and update them when the user closes one
+//const positions = document.querySelectorAll(".position"); // we use querySelectorAll because if we use getElementsByClassName the result has to be converted to an array before calling forEach()
+//const positions = Array.from(document.getElementsByClassName("position"));
+var positions = document.getElementById("position");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -216,6 +221,7 @@ body: JSON.stringify({
     console.log(data)
     
     // need to clear out previous positions before updating them
+    clearPositions();
 
     // update positions
     //getPositions();
@@ -223,6 +229,21 @@ body: JSON.stringify({
 .catch(error => {
     console.log(error)
 })
+}
+
+
+// clear positions
+const clearPositions = async () => {
+
+    console.log("in clear pos func");
+
+    document.getElementById("position").setAttribute("hidden", "")
+
+    //positions.parentNode.removeChild(positions);
+// positions.forEach(position => {
+    //positions.remove();
+// })
+
 }
  
 

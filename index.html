@@ -35,7 +35,7 @@ var i = 0;
 console.log(data.length);
 
 for(i=0; i<data.length; i++){
-    document.getElementById("open-positions").innerHTML+=`${data[i].positionId} `;
+    document.getElementById("open-positions").innerHTML+=`<b id="position">${data[i].positionId}</b> `;
 
     document.getElementById("open-positions").innerHTML+=`Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}`;
 
