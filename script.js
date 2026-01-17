@@ -5,6 +5,8 @@ document.getElementById("wallet-test-outcome").setAttribute("hidden","");
 
 document.getElementById("invalid-address").setAttribute("hidden", "");
 
+document.getElementById("sneaky-metamask").setAttribute("hidden", "");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -101,6 +103,9 @@ const chainId = chainNum;
                     document.getElementById("invalid-address").removeAttribute("hidden", "");
                     break;
 
+                    case 4100:
+                    document.getElementById("sneaky-metamask").removeAttribute("hidden", "");
+                    break;
                 }
 
                 return console.log(err.code);
