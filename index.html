@@ -36,11 +36,23 @@ console.log(data.length);
 
 for(i=0; i<data.length; i++){
     document.getElementById("open-positions").innerHTML+=`Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}`;
-    document.getElementById("open-positions").innerHTML+=` Long: `
+
+    document.getElementById("open-positions").innerHTML+=` Entry Value: $${data[i].entryPositionValue.toFixed(2)}`;
+
+    document.getElementById("open-positions").innerHTML+=` Current Value: $${data[i].positionValue.toFixed(2)}`;
+
+    document.getElementById("open-positions").innerHTML+=` Long: `;
     // get all long assets
     for (var j = 0; j<data[i].longAssets.length; j++){
     document.getElementById("open-positions").innerHTML+=` ${data[i].longAssets[j].coin}`;    
     }
+
+    document.getElementById("open-positions").innerHTML+=` Short: `;
+    // get all short assets
+    for (var j = 0; j<data[i].shortAssets.length; j++){
+    document.getElementById("open-positions").innerHTML+=` ${data[i].shortAssets[j].coin}`;    
+    }
+
     document.getElementById("open-positions").innerHTML+="<p><p>"// line break between positions
 }
 
