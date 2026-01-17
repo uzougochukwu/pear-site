@@ -16,7 +16,7 @@ document.getElementById("sign-in-error").setAttribute("hidden", "");
 // setting up positions variable so we can clear out the positions and update them when the user closes one
 //const positions = document.querySelectorAll(".position"); // we use querySelectorAll because if we use getElementsByClassName the result has to be converted to an array before calling forEach()
 //const positions = Array.from(document.getElementsByClassName("position"));
-var positions = document.getElementById("position");
+//var positions = document.getElementById("position");
 
 var walletAddress="";
 var timestamp = 0;
@@ -237,7 +237,17 @@ const clearPositions = async () => {
 
     console.log("in clear pos func");
 
-    document.getElementById("position").setAttribute("hidden", "")
+    document.getElementById("position0").setAttribute("hidden", "")
+    document.getElementById("position1").setAttribute("hidden", "")
+    document.getElementById("position2").setAttribute("hidden", "")
+    document.getElementById("position3").setAttribute("hidden", "")
+    document.getElementById("position4").setAttribute("hidden", "")
+    document.getElementById("position5").setAttribute("hidden", "")
+    document.getElementById("position6").setAttribute("hidden", "")
+    document.getElementById("position7").setAttribute("hidden", "")
+    document.getElementById("position8").setAttribute("hidden", "")
+
+
 
     //positions.parentNode.removeChild(positions);
 // positions.forEach(position => {
