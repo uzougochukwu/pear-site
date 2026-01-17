@@ -27,11 +27,11 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <p></p>
 
 <div id="open-positions">
-<p id="current-position">Position 2</p>
+<p id="current-position">Positions:</p>
 
 <script>
-function showPositions(){
-document.getElementById("open-positions").innerHTML+="<p>Another position<p>";
+function showPositions(data){ // now make a loop that shows all information needed for positions
+document.getElementById("open-positions").innerHTML+=`<p>position: ${data[0].positionId}<p>`;
 }
 </script> 
 </div>

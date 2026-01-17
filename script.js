@@ -175,7 +175,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 }
 })
 
-//get a list of open positions
+//get a list of processed positions
 const getPositions = async () => {
     fetch('https://hl-v2.pearprotocol.io/positions', {
     method: 'GET', 
@@ -187,7 +187,7 @@ const getPositions = async () => {
 .then(res => res.json())
 .then(data => {
 console.log(data)
-showPositions();
+showPositions(data);
 })
 .catch(error => {
 
