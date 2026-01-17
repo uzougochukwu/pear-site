@@ -29,11 +29,13 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <div id="margin-value">
 <p id="available-margin">Amount of USD available for trading assets:</p>
 <script>
-    function showAvailableMargin(data){
-document.getElementById("margin-value").innerHTML+=`<pre>$${data.totalValue}</pre>`;
+function showAvailableMargin(data){
+var balance = '$'+data.totalValue
+//document.getElementById("margin-value").innerHTML+=`<pre>$${data.totalValue}</pre>`;
+document.getElementById("margin").innerHTML=balance;
     }
 </script>
-
+<pre id="margin"></pre>
 </div>
 
 <div id="open-positions">

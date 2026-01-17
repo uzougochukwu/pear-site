@@ -242,7 +242,7 @@ const getWalletBalances = async () => {
     }})
     .then(res => res.json())
     .then(data => {
-
+        //document.getElementById("margin-value").remove();
         showAvailableMargin(data);
     })
     .catch(error => {
@@ -271,6 +271,8 @@ const getWalletBalances = async () => {
     document.getElementById("position6").setAttribute("hidden", "")
     document.getElementById("position7").setAttribute("hidden", "")
     document.getElementById("position8").setAttribute("hidden", "")
+
+    getWalletBalances();
 
     //positions.parentNode.removeChild(positions);
 // positions.forEach(position => {
