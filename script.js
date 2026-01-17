@@ -167,7 +167,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
         document.getElementById("same-timestamp").removeAttribute("hidden", "")
     }
     accessToken = data.accessToken;
-    showPositions();
+    getPositions();
 })
 .catch(error => {
     //console.log(error.message)
@@ -175,9 +175,23 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 }
 })
 
-// get a list of open positions
+//get a list of open positions
 const getPositions = async () => {
-    
+    fetch('https://hl-v2.pearprotocol.io/positions', {
+    method: 'GET', 
+    headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Accept": "*/*"
+    },
+})
+.then(res => res.json())
+.then(data => {
+console.log(data)
+showPositions();
+})
+.catch(error => {
+
+})
 }
 
 // clear error messages below confirm button, if user successfully confirms wallet address
