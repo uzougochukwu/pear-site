@@ -180,6 +180,7 @@ const getPositions = async () => {
     
 }
 
+// clear error messages below confirm button, if user successfully confirms wallet address
 const clearUpErrorMessagesBeneathConfirmButton = async () => {
     document.getElementById("invalid-address").setAttribute("hidden", "");
     document.getElementById("sneaky-metamask").setAttribute("hidden", "");
@@ -187,3 +188,6 @@ const clearUpErrorMessagesBeneathConfirmButton = async () => {
 }
 
 //const clearUpErrorMessagesBeneathLoginButton
+const clearUpErrorMessagesBeneathLoginButton = async () => {
+    document.getElementById("same-timestamp").removeAttribute("hidden", "");
+}
