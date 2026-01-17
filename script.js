@@ -11,6 +11,8 @@ document.getElementById("cancel-signature").setAttribute("hidden", "");
 
 document.getElementById("same-timestamp").setAttribute("hidden", "");
 
+document.getElementById("sign-in-error").setAttribute("hidden", "");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -42,6 +44,8 @@ address=${walletAddress}&clientId=SYSVIEW`, {
         chainNum = data.domain.chainId
 
         console.log(data)
+
+        clearUpErrorMessagesBeneathConfirmButton();
 
         eip712Sign();
 
@@ -124,7 +128,12 @@ const chainId = chainNum;
             //if (result.error) return console.log(result.error)
             console.log(result)
             signature = result.result
-            
+            if (signature == ""){
+                // display message telling user to start all over again, and make sure you sign in to rabby wallet 
+                document.getElementById("sign-in-error").removeAttribute("hidden", "");
+            }
+
+            document.getElementById("cancel-signature").setAttribute("hidden", "");
             document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
             console.log(signature)    
         }
@@ -171,4 +180,10 @@ const getPositions = async () => {
     
 }
 
-//const clearUpErrorMessagesBeneathConfirmButton
+const clearUpErrorMessagesBeneathConfirmButton = async () => {
+    document.getElementById("invalid-address").setAttribute("hidden", "");
+    document.getElementById("sneaky-metamask").setAttribute("hidden", "");
+    
+}
+
+//const clearUpErrorMessagesBeneathLoginButton
