@@ -200,17 +200,18 @@ showPositions(data);
  fetch(`https://hl-v2.pearprotocol.io\
 /positions/\
 ${positionID}\
-/close`), {
+/close`, {
     method: 'POST'
 ,
 headers: {
 "Authorization": `Bearer ${accessToken}`,
 "Content-Type": "application/json"
 },
-body:JSON.stringify({
+body: JSON.stringify({
     "executionType": "MARKET"
 })
-.then((res => res.json()))
+})
+.then(res => res.json())
 .then(data => {
     console.log(data)
     
@@ -223,7 +224,7 @@ body:JSON.stringify({
     console.log(error)
 })
 }
- }
+ 
 
 // clear error messages below confirm button, if user successfully confirms wallet address
 const clearUpErrorMessagesBeneathConfirmButton = async () => {
