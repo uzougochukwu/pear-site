@@ -9,6 +9,8 @@ document.getElementById("sneaky-metamask").setAttribute("hidden", "");
 
 document.getElementById("cancel-signature").setAttribute("hidden", "");
 
+document.getElementById("same-timestamp").setAttribute("hidden", "");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -151,9 +153,15 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
     })
 }).then(res => res.json())
 .then(data => {
-
+    console.log(data)
+    if (data.message == "Timestamp already used"){
+        document.getElementById("same-timestamp").removeAttribute("hidden", "")
+    }
     accessToken = data.accessToken;
     showPositions();
+})
+.catch(error => {
+    //console.log(error.message)
 })
 }
 })
@@ -163,4 +171,4 @@ const getPositions = async () => {
     
 }
 
-//const clearUpErrorMessages
+//const clearUpErrorMessagesBeneathConfirmButton
