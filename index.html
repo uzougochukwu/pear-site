@@ -26,6 +26,16 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <p id="same-timestamp">&#9995 Hold it right there! You don't need to login twice!</p>
 <p></p>
 
+<div id="margin-value">
+<p id="available-margin">Amount of USD available for trading assets:</p>
+<script>
+    function showAvailableMargin(data){
+document.getElementById("margin-value").innerHTML+=`<pre>$${data.totalValue}</pre>`;
+    }
+</script>
+
+</div>
+
 <div id="open-positions">
 <p id="current-position">Positions:</p>
 

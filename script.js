@@ -172,6 +172,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
         document.getElementById("same-timestamp").removeAttribute("hidden", "")
     }
     accessToken = data.accessToken;
+    getWalletBalances();
     getPositions();
 })
 .catch(error => {
@@ -230,6 +231,26 @@ body: JSON.stringify({
     console.log(error)
 })
 }
+
+const getWalletBalances = async () => {
+    fetch('https://hl-v2.pearprotocol.io/vault-wallet/balances', {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Accept": "*/*"
+        
+    }})
+    .then(res => res.json())
+    .then(data => {
+
+        showAvailableMargin(data);
+    })
+    .catch(error => {
+
+    })
+
+}
+
 
 // make new position trade
 
