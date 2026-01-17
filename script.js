@@ -7,6 +7,8 @@ document.getElementById("invalid-address").setAttribute("hidden", "");
 
 document.getElementById("sneaky-metamask").setAttribute("hidden", "");
 
+document.getElementById("cancel-signature").setAttribute("hidden", "");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -99,6 +101,7 @@ const chainId = chainNum;
             if (err) {
                  //-32602 means invalid wallet address
                  // 4100 means account not authorised
+                 // 4001 means user cancelled
 
                 switch(err.code){
                     case -32602:
@@ -108,9 +111,13 @@ const chainId = chainNum;
                     case 4100:
                     document.getElementById("sneaky-metamask").removeAttribute("hidden", "");
                     break;
+
+                    case 4001:
+                    document.getElementById("cancel-signature").removeAttribute("hidden", "");
+                    break;
                 }
 
-                //return console.log(err.code);
+                return console.log(err);
             }
             //if (result.error) return console.log(result.error)
             console.log(result)
@@ -155,3 +162,5 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 const getPositions = async () => {
     
 }
+
+//const clearUpErrorMessages
