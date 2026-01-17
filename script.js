@@ -37,6 +37,8 @@ address=${walletAddress}&clientId=SYSVIEW`, {
         message = data.message;
         chainNum = data.domain.chainId
 
+        console.log(data)
+
         eip712Sign();
 
     }
@@ -108,9 +110,10 @@ const chainId = chainNum;
                     break;
                 }
 
-                return console.log(err.code);
+                //return console.log(err.code);
             }
             //if (result.error) return console.log(result.error)
+            console.log(result)
             signature = result.result
             
             document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
