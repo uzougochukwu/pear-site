@@ -231,11 +231,15 @@ body: JSON.stringify({
 })
 }
 
+// make new position trade
+
 
 // clear positions
-const clearPositions = async () => {
-
+// const clearPositions = async () => {
+   function clearPositions() {
+  //  location.reload(); 
     console.log("in clear pos func");
+    // getPositions();
 
     document.getElementById("position0").setAttribute("hidden", "")
     document.getElementById("position1").setAttribute("hidden", "")
@@ -246,8 +250,6 @@ const clearPositions = async () => {
     document.getElementById("position6").setAttribute("hidden", "")
     document.getElementById("position7").setAttribute("hidden", "")
     document.getElementById("position8").setAttribute("hidden", "")
-
-
 
     //positions.parentNode.removeChild(positions);
 // positions.forEach(position => {
