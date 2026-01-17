@@ -215,9 +215,9 @@ body:JSON.stringify({
     console.log(data)
     
     // need to clear out previous positions before updating them
-    
+
     // update positions
-    getPositions();
+    //getPositions();
 })
 .catch(error => {
     console.log(error)
