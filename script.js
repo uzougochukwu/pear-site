@@ -3,6 +3,8 @@ const login = document.getElementById("login");
 
 document.getElementById("wallet-test-outcome").setAttribute("hidden","");
 
+document.getElementById("invalid-address").setAttribute("hidden", "");
+
 var walletAddress="";
 var timestamp = 0;
 var signHash = "";
@@ -90,8 +92,20 @@ const chainId = chainNum;
             from: walletAddress
         },
         function(err, result) {
-            if (err) return console.log(err);
-            if (result.error) return console.log(result.error)
+            if (err) {
+                 //-32602 means invalid wallet address
+                 // 4100 means account not authorised
+
+                switch(err.code){
+                    case -32602:
+                    document.getElementById("invalid-address").removeAttribute("hidden", "");
+                    break;
+
+                }
+
+                return console.log(err.code);
+            }
+            //if (result.error) return console.log(result.error)
             signature = result.result
             
             document.getElementById("wallet-test-outcome").removeAttribute("hidden","");
@@ -130,6 +144,6 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 })
 
 // get a list of open positions
-const showPositions = async () => {
+const getPositions = async () => {
     
 }
