@@ -31,7 +31,19 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 
 <script>
 function showPositions(data){ // now make a loop that shows all information needed for positions
-document.getElementById("open-positions").innerHTML+=`<p>position: ${data[0].positionId}<p>`;
+var i = 0;
+console.log(data.length);
+
+for(i=0; i<data.length; i++){
+    document.getElementById("open-positions").innerHTML+=`Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}`;
+    document.getElementById("open-positions").innerHTML+=` Long: `
+    // get all long assets
+    for (var j = 0; j<data[i].longAssets.length; j++){
+    document.getElementById("open-positions").innerHTML+=` ${data[i].longAssets[j].coin}`;    
+    }
+    document.getElementById("open-positions").innerHTML+="<p><p>"// line break between positions
+}
+
 }
 </script> 
 </div>
