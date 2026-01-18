@@ -325,7 +325,7 @@ trade.addEventListener("click", (e) => {
             if (positionSize >= 20){
                 document.getElementById("moneyBags").removeAttribute("hidden", "");
             }
-            if ( (6 <= positionSize) && (positionSize <= 7) ){
+            if ( (positionSize % 6 == 0) || (positionSize % 7 == 0) ){
                 document.getElementById("sixseven").removeAttribute("hidden", "");
             }
             
