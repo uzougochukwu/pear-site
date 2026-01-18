@@ -1,5 +1,6 @@
 const auth = document.getElementById("auth");
 const login = document.getElementById("login");
+const trade = document.getElementById("make-trade");
 
 document.getElementById("wallet-test-outcome").setAttribute("hidden","");
 
@@ -253,7 +254,51 @@ const getWalletBalances = async () => {
 
 
 // make new position trade
+trade.addEventListener("click", (e) => {
 
+    const longAsset = document.getElementById("long-asset").value
+    const longWeight = document.getElementById("long-weight").value
+
+    const shortAsset = document.getElementById("short-asset").value
+    const shortWeight = document.getElementById("short-weight").value
+    const positionSize = document.getElementById("position-size").value
+
+    if(e.target.id == "make-trade"){
+        fetch('https://hl-v2.pearprotocol.io/positions', {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "slippage": 0.01,
+                "executionType": "MARKET",
+                "leverage": 1,
+                "usdValue": positionSize,
+                "longAssets": [
+                    {
+                        "asset": longAsset,
+                        "weight": longWeight
+                    }
+                ],
+                "shortAssets": [
+                    {
+                        "asset": shortAsset,
+                        "weight": shortWeight
+                    }
+                ]
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => {
+
+        })
+
+    }
+})
 
 // clear positions
 // const clearPositions = async () => {
