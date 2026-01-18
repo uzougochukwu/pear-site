@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="layout.css">
 <head>
 <body id="start">
-<p>Hermes</p>
+<p id="appName">Hermes</p>
 <p>Your badges will be displayed here!</p>
 <img id="moneyBags" src="./moneybags.jpeg" width="200" height="200"> 
 <img id="sixseven" src="./sixseven.jpeg" width="400" height="300">
@@ -28,7 +28,7 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <p id="same-timestamp">&#9995 Hold it right there! You don't need to login twice!</p>
 <p></p>
 <p>Active Markets: </p>
-<p>You must use one of the assets in this list when you trade:</p>
+<p>You <b>must</b> use one of the assets in this list when you trade:</p>
 <p>The L means Long and the S means Short, <br></br> but feel free to put any of these assets on the Long or Short side</p>
 <div id="active-markets" style="height:100px;width:140px;overflow:auto;border:8px
 solid yellowgreen; padding:2%; display:block; margin:0 auto;">
@@ -104,7 +104,7 @@ var i = 0;
 console.log(data);
 
 for(i=0; i<data.length; i++){
-    document.getElementById("open-positions").innerHTML+=`<pre id="position0">${data[i].positionId}</pre> `;
+    // document.getElementById("open-positions").innerHTML+=`<pre id="position0">${data[i].positionId}</pre> `;
 
     document.getElementById("open-positions").innerHTML+=`<pre id="position1">Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}</pre>`;
 

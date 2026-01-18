@@ -1,6 +1,40 @@
+body {
+    background-color: #e0ddd5;
+}
+
 #start {
     text-align:center
 }
 input[type=number]{
     width:40px;
 }
+
+#getEIP{
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    background-color:  #283d70;
+    color:white;
+}
+
+#auth-login{
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    background-color:  turquoise;
+    color:red;    
+}
+
+#make-trade{
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    background-color:  orange;
+    color:black;    
+}
+
+/* buttons should all be #283d70 */
+
+/*styles needed for -appName, -start, -getEIP, 
+wallet-test-outcome, invalid-address, sneaky-metamask, 
+cancel-signature, sign-in-error,
+-auth-login, same-timestamp,
+make-trade, success, failure,
+long-asset, short-asset,
+number, available-margin,
+current-position, position1-8,
+ */
