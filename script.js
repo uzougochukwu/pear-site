@@ -313,12 +313,21 @@ trade.addEventListener("click", (e) => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            if (data.statusCode !== 500){
+                console.log("success")
             document.getElementById("success").removeAttribute("hidden", "");
+            document.getElementById("failure").setAttribute("hidden", "");
+
+            } else {
+            document.getElementById("failure").removeAttribute("hidden", "");
+            document.getElementById("success").setAttribute("hidden", "");
+                return -1;
+            }
 
             getMostRecentPosition();
         })
         .catch(error => {
-            document.getElementById("failure").removeAttribute("hidden", "");
+            
         }
     ) 
 }
