@@ -372,7 +372,7 @@ showPositionRecent(data[0]);
     console.log("in clear pos func");
     // getPositions();
 
-    document.getElementById("position0").setAttribute("hidden", "")
+
     document.getElementById("position1").setAttribute("hidden", "")
     document.getElementById("position2").setAttribute("hidden", "")
     document.getElementById("position3").setAttribute("hidden", "")
