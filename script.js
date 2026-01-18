@@ -18,6 +18,10 @@ document.getElementById("success").setAttribute("hidden", "");
 
 document.getElementById("failure").setAttribute("hidden", "");
 
+document.getElementById("moneyBags").setAttribute("hidden", "");
+
+document.getElementById("sixseven").setAttribute("hidden", "");
+
 
 // setting up positions variable so we can clear out the positions and update them when the user closes one
 //const positions = document.querySelectorAll(".position"); // we use querySelectorAll because if we use getElementsByClassName the result has to be converted to an array before calling forEach()
