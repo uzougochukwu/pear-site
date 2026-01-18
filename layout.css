@@ -62,6 +62,20 @@ input[type=number]{
 #failure{
     color:red
 }
+
+#long-asset{
+    color:green;
+}
+#short-asset{
+    color:red;
+}
+
+#number{
+    color: darkgrey
+}
+#available-margin{
+    color:green;
+}
 /* buttons should all be #283d70 */
 
 /*styles needed for -appName, -start, -getEIP, 
@@ -69,7 +83,7 @@ input[type=number]{
 -cancel-signature, -sign-in-error,
 -auth-login, -same-timestamp,
 -make-trade, -success, -failure,
-long-asset, short-asset,
-number, available-margin,
+-long-asset, -short-asset,
+-number, -available-margin,
 current-position, position1-8,
  */
