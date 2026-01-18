@@ -172,7 +172,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
     if (data.message == "Timestamp already used"){
         document.getElementById("same-timestamp").removeAttribute("hidden", "")
     }
-    accessToken = data.accessToken;
+    accessToken = data.accessToken; // data.accessToken
     getWalletBalances();
     getPositions();
 })
@@ -256,35 +256,51 @@ const getWalletBalances = async () => {
 // make new position trade
 trade.addEventListener("click", (e) => {
 
-    const longAsset = document.getElementById("long-asset").value
-    const longWeight = document.getElementById("long-weight").value
+  //  console.log("in trade func")
+         console.log(accessToken, "YO");
 
-    const shortAsset = document.getElementById("short-asset").value
-    const shortWeight = document.getElementById("short-weight").value
-    const positionSize = document.getElementById("position-size").value
+    var longAsset = document.getElementById("long-asset").value
+    var longWeight = document.getElementById("long-weight").value
+
+    var shortAsset = document.getElementById("short-asset").value
+    var shortWeight = document.getElementById("short-weight").value
+    var positionSize = document.getElementById("position-size").value
+
+    longWeight = parseInt(longWeight);
+    shortWeight = parseInt(shortWeight);
+    positionSize = parseInt(positionSize);
+
+    // console.log(e.target.id)
 
     if(e.target.id == "make-trade"){
+        //  console.log(accessToken, "YO");
+
+          console.log("long asset: ", longAsset)
+          console.log("long weight: ", typeof(longWeight), longWeight)
+          console.log("short asset: ", shortAsset)
+          console.log("short weight: ", typeof(shortWeight), shortWeight)
+          console.log("usd value", typeof(positionSize), positionSize)
         fetch('https://hl-v2.pearprotocol.io/positions', {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+            headers: {"Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+               // "Accept": "*/*"
             },
             body: JSON.stringify({
-                "slippage": 0.01,
+                "slippage": 0.1,
                 "executionType": "MARKET",
                 "leverage": 1,
                 "usdValue": positionSize,
                 "longAssets": [
                     {
                         "asset": longAsset,
-                        "weight": longWeight
+                        "weight": 1
                     }
                 ],
                 "shortAssets": [
                     {
                         "asset": shortAsset,
-                        "weight": shortWeight
+                        "weight": 1
                     }
                 ]
             })
@@ -295,9 +311,10 @@ trade.addEventListener("click", (e) => {
         })
         .catch(error => {
 
-        })
+        }
+    ) 
+}
 
-    }
 })
 
 // clear positions
