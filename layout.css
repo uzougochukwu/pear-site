@@ -32,13 +32,43 @@ input[type=number]{
     color: green;
 }
 
+#invalid-address{
+    font:italic;
+    color:maroon;
+}
+
+#sneaky-metamask{
+    font-weight: bold;
+    color:red;
+}
+
+#cancel-signature{
+    font-weight: bold;
+    font-style: oblique;
+    color:black;
+}
+
+#sign-in-error{
+    color: darkgreen;
+}
+
+#same-timestamp{
+    color: purple;
+}
+
+#success{
+    color:green
+}
+#failure{
+    color:red
+}
 /* buttons should all be #283d70 */
 
 /*styles needed for -appName, -start, -getEIP, 
-wallet-test-outcome, invalid-address, sneaky-metamask, 
-cancel-signature, sign-in-error,
--auth-login, same-timestamp,
--make-trade, success, failure,
+-wallet-test-outcome, -invalid-address, -sneaky-metamask, 
+-cancel-signature, -sign-in-error,
+-auth-login, -same-timestamp,
+-make-trade, -success, -failure,
 long-asset, short-asset,
 number, available-margin,
 current-position, position1-8,
