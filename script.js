@@ -322,6 +322,14 @@ trade.addEventListener("click", (e) => {
             document.getElementById("success").removeAttribute("hidden", "");
             document.getElementById("failure").setAttribute("hidden", "");
 
+            if (positionSize >= 20){
+                document.getElementById("moneyBags").removeAttribute("hidden", "");
+            }
+            if ( (6 <= positionSize) && (positionSize <= 7) ){
+                document.getElementById("sixseven").removeAttribute("hidden", "");
+            }
+            
+
             } else {
             document.getElementById("failure").removeAttribute("hidden", "");
             document.getElementById("success").setAttribute("hidden", "");
