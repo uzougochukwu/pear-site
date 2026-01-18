@@ -379,6 +379,7 @@ showPositionRecent(data[0]);
 
 }
  
+window.onload = getActiveAssets;
 
 // clear error messages below confirm button, if user successfully confirms wallet address
 const clearUpErrorMessagesBeneathConfirmButton = async () => {
