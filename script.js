@@ -14,6 +14,11 @@ document.getElementById("same-timestamp").setAttribute("hidden", "");
 
 document.getElementById("sign-in-error").setAttribute("hidden", "");
 
+document.getElementById("success").setAttribute("hidden", "");
+
+document.getElementById("failure").setAttribute("hidden", "");
+
+
 // setting up positions variable so we can clear out the positions and update them when the user closes one
 //const positions = document.querySelectorAll(".position"); // we use querySelectorAll because if we use getElementsByClassName the result has to be converted to an array before calling forEach()
 //const positions = Array.from(document.getElementsByClassName("position"));
@@ -308,10 +313,12 @@ trade.addEventListener("click", (e) => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            document.getElementById("success").removeAttribute("hidden", "");
+
             getMostRecentPosition();
         })
         .catch(error => {
-
+            document.getElementById("failure").removeAttribute("hidden", "");
         }
     ) 
 }
