@@ -260,14 +260,14 @@ trade.addEventListener("click", (e) => {
          console.log(accessToken, "YO");
 
     var longAsset = document.getElementById("long-asset").value
-    var longWeight = document.getElementById("long-weight").value
+   // var longWeight = document.getElementById("long-weight").value
 
     var shortAsset = document.getElementById("short-asset").value
-    var shortWeight = document.getElementById("short-weight").value
+   // var shortWeight = document.getElementById("short-weight").value
     var positionSize = document.getElementById("position-size").value
 
-    longWeight = parseInt(longWeight);
-    shortWeight = parseInt(shortWeight);
+    // longWeight = parseInt(longWeight);
+    // shortWeight = parseInt(shortWeight);
     positionSize = parseInt(positionSize);
 
     // console.log(e.target.id)
@@ -276,9 +276,9 @@ trade.addEventListener("click", (e) => {
         //  console.log(accessToken, "YO");
 
           console.log("long asset: ", longAsset)
-          console.log("long weight: ", typeof(longWeight), longWeight)
+        //   console.log("long weight: ", typeof(longWeight), longWeight)
           console.log("short asset: ", shortAsset)
-          console.log("short weight: ", typeof(shortWeight), shortWeight)
+        //   console.log("short weight: ", typeof(shortWeight), shortWeight)
           console.log("usd value", typeof(positionSize), positionSize)
         fetch('https://hl-v2.pearprotocol.io/positions', {
             method: 'POST',
@@ -308,6 +308,7 @@ trade.addEventListener("click", (e) => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            getMostRecentPosition();
         })
         .catch(error => {
 
@@ -316,6 +317,25 @@ trade.addEventListener("click", (e) => {
 }
 
 })
+
+const getMostRecentPosition = async () => {
+    console.log("get most recent pos")
+    fetch('https://hl-v2.pearprotocol.io/positions', {
+    method: 'GET', 
+    headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Accept": "*/*"
+    },
+})
+.then(res => res.json())
+.then(data => {
+//console.log(data)
+showPositionRecent(data[0]);
+})
+.catch(error => {
+
+})
+}
 
 // clear positions
 // const clearPositions = async () => {

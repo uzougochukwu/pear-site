@@ -27,10 +27,11 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <p></p>
 <div id="place-trade"><p><button id="make-trade">Trade</button></p>
 <b>Long Asset: <input type="text" id="long-asset" ></b>
-<b>Weight (out of 1): <input type="number" id="long-weight"></b>
+<!-- <b>Weight (out of 1): <input type="number" id="long-weight"></b> -->
 <p></p>
 <b>Short Asset: <input type="text" id="short-asset" size="2"></b>
-<b>Weight (out of 1): <input type="number" id="short-weight"></b><p></p>
+<!-- <b>Weight (out of 1): <input type="number" id="short-weight"></b><p></p> -->
+ <p></p>
 <b>Position size (in USD): <input type="number" id="position-size"></b>
 </div>
 
@@ -52,7 +53,7 @@ document.getElementById("margin").innerHTML=balance;
 <script>
 function showPositions(data){ // now make a loop that shows all information needed for positions
 var i = 0;
-console.log(data.length);
+console.log(data);
 
 for(i=0; i<data.length; i++){
     document.getElementById("open-positions").innerHTML+=`<pre id="position0">${data[i].positionId}</pre> `;
@@ -89,6 +90,47 @@ for(i=0; i<data.length; i++){
 }
 
 }
+</script> 
+<script>
+function showPositionRecent(data){ // now make a loop that shows all information needed for positions
+var i = 0;
+console.log(data);
+
+
+    document.getElementById("open-positions").innerHTML+=`<pre id="position0">${data.positionId}</pre> `;
+
+    document.getElementById("open-positions").innerHTML+=`<pre id="position1">Profit and Loss: $${data.unrealizedPnl.toFixed(2)}</pre>`;
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position2">Entry Value: $${data.entryPositionValue.toFixed(2)}</pre>`;
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position3">Current Value: $${data.positionValue.toFixed(2)}</pre>`;
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position4">Long: </pre>`;
+    // get all long assets
+    for (var j = 0; j<data.longAssets.length; j++){
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position5">${data.longAssets[j].coin}</pre>`;    
+    }
+    // if (data[i].longAssets.length==0){
+    //     document.getElementById("open-positions").innerHTML+=` <b id="position6">No long assets </b>`;
+    // }    
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position6">Short: </pre>`;
+    // get all short assets
+    for (var j = 0; j<data.shortAssets.length; j++){
+
+    document.getElementById("open-positions").innerHTML+=` <pre id="position7">${data.shortAssets[j].coin}</pre>`;    
+    }
+    // if(data[i].shortAssets.length == 0){
+    //     document.getElementById("open-positions").innerHTML+=` <b id="position9">No short assets </b>`;
+    // }
+
+    document.getElementById("open-positions").innerHTML+= `<button id="position8" onClick="closeEntirePos('${data.positionId}')"><pre >Close entire position</pre></button>`;
+
+    document.getElementById("open-positions").innerHTML+="<p><p>"// line break between positions
+}
+
+
 </script> 
 </div>
 <script type="module" src="script.js"></script>
