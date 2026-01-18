@@ -27,13 +27,18 @@ input[type=number]{
     color:black;    
 }
 
+#wallet-test-outcome{
+    font-weight: bold;
+    color: green;
+}
+
 /* buttons should all be #283d70 */
 
 /*styles needed for -appName, -start, -getEIP, 
 wallet-test-outcome, invalid-address, sneaky-metamask, 
 cancel-signature, sign-in-error,
 -auth-login, same-timestamp,
-make-trade, success, failure,
+-make-trade, success, failure,
 long-asset, short-asset,
 number, available-margin,
 current-position, position1-8,
