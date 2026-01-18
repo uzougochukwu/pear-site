@@ -27,8 +27,9 @@ Wallet Address: <input type="text" id="addresstext"/><p></p>
 <p></p>
 <p>Active Markets: </p>
 <p>You must use one of the assets in this list when you trade:</p>
+<p>The L means Long and the S means Short, <br></br> but feel free to put any of these assets on the Long or Short side</p>
 <div id="active-markets" style="height:100px;width:140px;overflow:auto;border:8px
-solid yellowgreen; padding:2%">
+solid yellowgreen; padding:2%; display:block; margin:0 auto;">
 <script>
 function getActiveAssets() {
 fetch('https://hl-v2.pearprotocol.io/markets/active', {
