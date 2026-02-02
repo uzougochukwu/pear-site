@@ -372,15 +372,15 @@ function clearPositions(maxID) {
   //  location.reload(); 
     console.log("in clear pos func");
     // getPositions();
-    var k =0;
+    var l =0;
 
-    for (k=0; k<=maxID;k++){
-    console.log("k = ", k);
+    // for (l=0; l<=maxID;l++){
+    console.log("l = ", l);
     console.log("maxID = ", maxID);
     console.log("remove element");
-    var element = document.getElementById(`position${k}`);
+    var element = document.getElementById(`position${l}`);
     element.remove();
-    }
+    // }
     
     //document.getElementById("position1").setAttribute("hidden", "")
     // document.getElementById("position2").setAttribute("hidden", "")
