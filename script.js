@@ -214,7 +214,7 @@ showPositions(data);
 
 // close entire position
  window.closeEntirePos = function(positionID, maxID){
-    console.log("entered closeEntirePos func")
+    console.log("entered closeEntirePos func, with position of ", positionID, "and maxID of ", maxID)
  fetch(`https://hl-v2.pearprotocol.io\
 /positions/\
 ${positionID}\
@@ -237,8 +237,11 @@ body: JSON.stringify({
     clearPositions(maxID);
 
     // update positions
-   getPositions();
-})
+   //getPositions();
+}).then( data => {
+    getPositions();
+}
+)
 .catch(error => {
     console.log(error)
 })
