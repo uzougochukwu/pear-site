@@ -343,7 +343,7 @@ trade.addEventListener("click", (e) => {
             // console.log("maximum Index is ", maximumIndexForDelete)
             // clearPositions(maxID);
             clearPositionsAfterTrade();
-            // getPositions();
+            getPositions();
         })
         .catch(error => {
             
@@ -421,6 +421,8 @@ function clearPositionsAfterTrade() {
     element.remove();
     l++;
     }
+
+    getWalletBalances();
 
 }
  
