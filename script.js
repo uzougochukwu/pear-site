@@ -193,6 +193,7 @@ fetch('https://hl-v2.pearprotocol.io/auth/login', {
 
 //get a list of processed positions
 const getPositions = async () => {
+    console.log("get positions")
     fetch('https://hl-v2.pearprotocol.io/positions', {
     method: 'GET', 
     headers: {
@@ -211,7 +212,7 @@ showPositions(data);
 }
 
 // close entire position
- window.closeEntirePos = function(positionID){
+ window.closeEntirePos = function(positionID, maxID){
     console.log("entered closeEntirePos func")
  fetch(`https://hl-v2.pearprotocol.io\
 /positions/\
@@ -232,10 +233,10 @@ body: JSON.stringify({
     console.log(data)
     
     // need to clear out previous positions before updating them
-    clearPositions();
+    clearPositions(maxID);
 
     // update positions
-    //getPositions();
+   // getPositions();
 })
 .catch(error => {
     console.log(error)
@@ -367,20 +368,28 @@ showPositionRecent(data[0]);
 
 // clear positions
 // const clearPositions = async () => {
-   function clearPositions() {
+function clearPositions(maxID) {
   //  location.reload(); 
     console.log("in clear pos func");
     // getPositions();
+    var k =0;
 
-
-    document.getElementById("position1").setAttribute("hidden", "")
-    document.getElementById("position2").setAttribute("hidden", "")
-    document.getElementById("position3").setAttribute("hidden", "")
-    document.getElementById("position4").setAttribute("hidden", "")
-    document.getElementById("position5").setAttribute("hidden", "")
-    document.getElementById("position6").setAttribute("hidden", "")
-    document.getElementById("position7").setAttribute("hidden", "")
-    document.getElementById("position8").setAttribute("hidden", "")
+    for (k=0; k<=maxID;k++){
+    console.log("k = ", k);
+    console.log("maxID = ", maxID);
+    console.log("remove element");
+    var element = document.getElementById(`position${k}`);
+    element.remove();
+    }
+    
+    //document.getElementById("position1").setAttribute("hidden", "")
+    // document.getElementById("position2").setAttribute("hidden", "")
+    // document.getElementById("position3").setAttribute("hidden", "")
+    // document.getElementById("position4").setAttribute("hidden", "")
+    // document.getElementById("position5").setAttribute("hidden", "")
+    // document.getElementById("position6").setAttribute("hidden", "")
+    // document.getElementById("position7").setAttribute("hidden", "")
+    // document.getElementById("position8").setAttribute("hidden", "")
 
     getWalletBalances();
 
