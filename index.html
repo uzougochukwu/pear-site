@@ -110,32 +110,34 @@ for(i=0; i<data.length; i++){
 
     document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">Profit and Loss: $${data[i].unrealizedPnl.toFixed(2)}</pre>`;
 k++;
-    document.getElementById("open-positions").innerHTML+=`<pre id="position2">Entry Value: $${data[i].entryPositionValue.toFixed(2)}</pre>`;
-
-    document.getElementById("open-positions").innerHTML+=`<pre id="position3">Current Value: $${data[i].positionValue.toFixed(2)}</pre>`;
-
-    document.getElementById("open-positions").innerHTML+=`<pre id="position4">Long: </pre>`;
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">Entry Value: $${data[i].entryPositionValue.toFixed(2)}</pre>`;
+k++;
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">Current Value: $${data[i].positionValue.toFixed(2)}</pre>`;
+k++;
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">Long: </pre>`;
+k++;    
     // get all long assets
     for (var j = 0; j<data[i].longAssets.length; j++){
-
-    document.getElementById("open-positions").innerHTML+=`<pre id="position5">${data[i].longAssets[j].coin}</pre>`;    
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">${data[i].longAssets[j].coin}</pre>`;  
+k++;      
     }
     // if (data[i].longAssets.length==0){
     //     document.getElementById("open-positions").innerHTML+=` <b id="position6">No long assets </b>`;
     // }    
 
-    document.getElementById("open-positions").innerHTML+=`<pre id="position6">Short: </pre>`;
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">Short: </pre>`;
+k++;    
     // get all short assets
     for (var j = 0; j<data[i].shortAssets.length; j++){
-
-    document.getElementById("open-positions").innerHTML+=`<pre id="position7">${data[i].shortAssets[j].coin}</pre>`;    
+    document.getElementById("open-positions").innerHTML+=`<pre id="position${k}">${data[i].shortAssets[j].coin}</pre>`;    
+k++;    
     }
     // if(data[i].shortAssets.length == 0){
     //     document.getElementById("open-positions").innerHTML+=` <b id="position9">No short assets </b>`;
     // }
 
-    document.getElementById("open-positions").innerHTML+= `<button id="position8" onClick="closeEntirePos('${data[i].positionId}', '${k}')"><pre >Close entire position</pre></button>`;
-
+    document.getElementById("open-positions").innerHTML+= `<button id="position${k}" onClick="closeEntirePos('${data[i].positionId}', '${k}')"><pre >Close entire position</pre></button>`;
+k++;
     document.getElementById("open-positions").innerHTML+="<p><p>"// line break between positions
 }
 

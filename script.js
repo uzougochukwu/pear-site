@@ -374,13 +374,13 @@ function clearPositions(maxID) {
     // getPositions();
     var l =0;
 
-    // for (l=0; l<=maxID;l++){
+     for (l=0; l<=maxID;l++){
     console.log("l = ", l);
     console.log("maxID = ", maxID);
     console.log("remove element");
     var element = document.getElementById(`position${l}`);
     element.remove();
-    // }
+     }
     
     //document.getElementById("position1").setAttribute("hidden", "")
     // document.getElementById("position2").setAttribute("hidden", "")
