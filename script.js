@@ -36,6 +36,7 @@ var signText = "";
 var signature = "";
 var chainNum = "";
 var accessToken = "";
+var maximumIndexForDelete = 0;
 
 // getEIP712 message 
 auth.addEventListener("click", (e) => {
@@ -56,7 +57,7 @@ address=${walletAddress}&clientId=SYSVIEW`, {
 
         timestamp = data.timestamp;
         message = data.message;
-        chainNum = data.domain.chainId
+        chainNum = data.domain.chainId;
 
         console.log(data)
 
@@ -337,7 +338,12 @@ trade.addEventListener("click", (e) => {
                 return -1;
             }
 
-            getMostRecentPosition();
+            //getMostRecentPosition();
+            // console.log("time to clear")
+            // console.log("maximum Index is ", maximumIndexForDelete)
+            // clearPositions(maxID);
+            clearPositionsAfterTrade();
+            // getPositions();
         })
         .catch(error => {
             
@@ -369,18 +375,22 @@ showPositionRecent(data[0]);
 // clear positions
 // const clearPositions = async () => {
 function clearPositions(maxID) {
-  //  location.reload(); 
+  //location.reload(); 
     console.log("in clear pos func");
    
     var l =0;
 
-     for (l=0; l<=maxID;l++){
+    for (l=0; l<=maxID;l++){
     console.log("l = ", l);
     console.log("maxID = ", maxID);
     console.log("remove element");
     var element = document.getElementById(`position${l}`);
     element.remove();
-     }
+    }
+
+    maximumIndexForDelete = maxID;
+
+    //console.log("at end of ")
     
     // document.getElementById("position1").setAttribute("hidden", "")
     // document.getElementById("position2").setAttribute("hidden", "")
@@ -399,6 +409,18 @@ function clearPositions(maxID) {
 // positions.forEach(position => {
     //positions.remove();
 // })
+
+}
+
+function clearPositionsAfterTrade() {
+    console.log("in clear pos after trade func");
+    var l = 0;
+
+    while (document.getElementById(`position${l}`) != null){
+    var element = document.getElementById(`position${l}`);
+    element.remove();
+    l++;
+    }
 
 }
  
