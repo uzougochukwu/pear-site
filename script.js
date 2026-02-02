@@ -236,7 +236,7 @@ body: JSON.stringify({
     clearPositions(maxID);
 
     // update positions
-   // getPositions();
+   getPositions();
 })
 .catch(error => {
     console.log(error)
@@ -371,7 +371,7 @@ showPositionRecent(data[0]);
 function clearPositions(maxID) {
   //  location.reload(); 
     console.log("in clear pos func");
-    // getPositions();
+   
     var l =0;
 
      for (l=0; l<=maxID;l++){
@@ -382,7 +382,7 @@ function clearPositions(maxID) {
     element.remove();
      }
     
-    //document.getElementById("position1").setAttribute("hidden", "")
+    // document.getElementById("position1").setAttribute("hidden", "")
     // document.getElementById("position2").setAttribute("hidden", "")
     // document.getElementById("position3").setAttribute("hidden", "")
     // document.getElementById("position4").setAttribute("hidden", "")
@@ -392,6 +392,8 @@ function clearPositions(maxID) {
     // document.getElementById("position8").setAttribute("hidden", "")
 
     getWalletBalances();
+
+    //  getPositions();
 
     //positions.parentNode.removeChild(positions);
 // positions.forEach(position => {
